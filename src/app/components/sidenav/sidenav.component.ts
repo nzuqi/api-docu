@@ -10,10 +10,8 @@ export class SidenavComponent {
   resizingEvent = {
     // whether the user is currently resizing the sidenav
     isResizing: false,
-
     // the x coordinate of the mouse when the user started resizing
     startingCursorX: 0,
-
     // the width of the sidenav when the user started resizing
     startingWidth: 0,
   };
@@ -45,9 +43,7 @@ export class SidenavComponent {
     }
 
     const cursorDeltaX = event.clientX - this.resizingEvent.startingCursorX;
-
     const newWidth = this.resizingEvent.startingWidth + cursorDeltaX;
-
     this.sidenavService.setSidenavWidth(newWidth);
   }
 
