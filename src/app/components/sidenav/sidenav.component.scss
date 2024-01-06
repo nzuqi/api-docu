@@ -1,15 +1,14 @@
 :host {
   height: 100vh;
   width: var(--sidenav-collapsed-width);
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  background-color: #f2f5f5;
 
   &.is-expanded {
     width: var(--sidenav-width);
   }
-
-  box-sizing: border-box;
-  position: sticky;
-  top: 0;
-  background-color: rgb(237, 241, 243);
 
   &:not(.resizing) {
     transition: width 0.6s cubic-bezier(0.02, 0.68, 0.63, 0.98);
@@ -30,7 +29,7 @@
 
 .resize-handle {
   height: 100%;
-  background-color: rgb(165, 165, 165);
+  background-color: #d0d0d0;
   width: 2px;
   position: absolute;
   top: 0;
