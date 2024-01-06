@@ -8,6 +8,7 @@
 
   &.is-expanded {
     width: var(--sidenav-width);
+    background: #f2f5f5 url("/assets/images/sidebar-pattern.svg") bottom left no-repeat;
   }
 
   &:not(.resizing) {
