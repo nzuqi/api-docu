@@ -29,6 +29,7 @@ export class SidenavComponent {
   }
 
   startResizing(event: MouseEvent): void {
+    if (!this.sidenavService.isExpanded) return;
     this.resizingEvent = {
       isResizing: true,
       startingCursorX: event.clientX,
