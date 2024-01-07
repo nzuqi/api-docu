@@ -1,0 +1,9 @@
+<div class="toolbar-overlay" [class.show]="this.sidenavService.isSmallDevice && showMenu" (click)="toggleMenu()"></div>
+
+<div class="toolbar" [class.minimal]="this.sidenavService.isSmallDevice">
+    <div class="menu-icon" *ngIf="this.sidenavService.isSmallDevice" (click)="toggleMenu()" [class.open]="showMenu">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
