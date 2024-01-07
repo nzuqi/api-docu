@@ -1,0 +1,13 @@
+:host {
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+.content {
+    flex-grow: 1;
+    padding-right: 20px;
+    background: #fff url("/assets/images/content-pattern.svg") top right no-repeat;
+}

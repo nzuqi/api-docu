@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'documentation',
     loadChildren: () => import('./modules/api-documentation/api-documentation.module').then((m) => m.ApiDocumentationModule),
-    canActivate: [authGuard],
+    canActivate: [],
   },
   {
     path: 'api',
@@ -22,6 +22,10 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./modules/profile/profile.module').then((m) => m.ProfileModule),
     canActivate: [authGuard],
+  },
+  {
+    path: '**',
+    redirectTo: 'documentation',
   },
 ];
 
