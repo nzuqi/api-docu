@@ -10,7 +10,7 @@ export class SidenavService {
   isSmallDevice = true;
 
   get sidenavWidth(): number {
-    return parseInt(
+    return this.isSmallDevice ? 300 : parseInt(
       getComputedStyle(document.body).getPropertyValue('--sidenav-width'),
       10
     );

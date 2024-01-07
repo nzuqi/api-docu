@@ -37,9 +37,10 @@
     </div>
 </div>
 
-<div class="resize-handle" [class.resizing]="resizingEvent.isResizing" (mousedown)="startResizing($event)"></div>
+<div class="resize-handle" [class.resizing]="resizingEvent.isResizing" (mousedown)="startResizing($event)"
+    *ngIf="!isSmallDevice"></div>
 
 <button class="toggle-button" (click)="this.sidenavService.toggleSidenav()"
-    [class.is-flipped]="sidenavService.isExpanded">
+    [class.is-flipped]="sidenavService.isExpanded" *ngIf="!isSmallDevice">
     <mat-icon icon>chevron_right</mat-icon>
 </button>

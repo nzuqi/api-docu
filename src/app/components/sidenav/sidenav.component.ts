@@ -28,6 +28,11 @@ export class SidenavComponent {
     return this.sidenavService.isExpanded;
   }
 
+  @HostBinding('class.is-small-device')
+  get isSmallDevice() {
+    return this.sidenavService.isSmallDevice;
+  }
+
   startResizing(event: MouseEvent): void {
     if (!this.sidenavService.isExpanded) return;
     this.resizingEvent = {

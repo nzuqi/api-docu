@@ -6,9 +6,13 @@
   top: 0;
   background-color: #f2f5f5;
 
-  &.is-expanded {
+  &.is-expanded:not(.is-small-device) {
     width: var(--sidenav-width);
     background: #f2f5f5 url("/assets/images/sidebar-pattern.svg") bottom left no-repeat;
+  }
+
+  &.is-small-device {
+    width: 0;
   }
 
   &:not(.resizing) {
@@ -19,12 +23,12 @@
 .sidenav-body-container {
   overflow-y: auto;
   height: 100%;
-  padding: 16px;
   box-sizing: border-box;
 
   .sidenav-body {
     width: 100%;
     overflow-x: hidden;
+    padding: 16px;
 
     &--brand {
       width: 100%;
