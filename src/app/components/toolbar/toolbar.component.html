@@ -6,4 +6,34 @@
         <div></div>
         <div></div>
     </div>
+
+    <div class="section">
+        <mat-form-field appearance="fill" class="search-input" [class.wide]="!this.sidenavService.isSmallDevice">
+            <input matInput placeholder="Search...">
+            <button mat-icon-button matPrefix>
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <button mat-icon-button [matMenuTriggerFor]="profileMenu" aria-label="Profile">
+            <mat-icon>person</mat-icon>
+        </button>
+    </div>
 </div>
+
+<mat-menu #profileMenu="matMenu" xPosition="before" dense>
+    <button mat-menu-item>
+        <span>Account</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item>
+        <span>API keys management</span>
+    </button>
+    <button mat-menu-item>
+        <span>API usage</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item>
+        <span>Sign out</span>
+    </button>
+</mat-menu>

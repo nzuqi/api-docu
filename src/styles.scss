@@ -50,3 +50,22 @@ body {
   --sidenav-width: 300px;
   --sidenav-collapsed-width: 20px;
 }
+
+.search-input {
+  .mat-mdc-text-field-wrapper {
+    width: 130px;
+    border-radius: 50px;
+    padding: 0px 12px;
+    .mdc-line-ripple {
+      display: none;
+    }
+  }
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+  &.wide {
+    .mat-mdc-text-field-wrapper {
+      min-width: 320px;
+    }
+  }
+}
