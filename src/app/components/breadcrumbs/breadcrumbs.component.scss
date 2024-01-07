@@ -1,0 +1,44 @@
+:host {
+    display: block;
+    padding: 10px 30px;
+    // background-color: aliceblue;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    p {
+        margin: 0;
+
+        span {
+            margin-right: 40px;
+            position: relative;
+            cursor: pointer;
+            color: #333;
+            font-weight: 300;
+            transition: color 0.3s ease;
+
+            &:hover:not(:last-child) {
+                color: #00a2ff;
+                transition: color 0.3s ease;
+            }
+
+            &::after {
+                content: ">";
+                position: absolute;
+                right: -24px;
+                opacity: 0.5;
+                cursor: default;
+                color: #333;
+            }
+            &:last-child {
+                opacity: 0.7;
+                cursor: default;
+
+                &::after {
+                    display: none;
+                }
+            }
+        }
+    }
+}
