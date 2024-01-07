@@ -7,6 +7,7 @@ export class SidenavService {
   readonly sidenavMinWidth = 250;
   readonly sidenavMaxWidth = 620; // window.innerWidth - 300;
   isExpanded = true;
+  isSmallDevice = true;
 
   get sidenavWidth(): number {
     return parseInt(
