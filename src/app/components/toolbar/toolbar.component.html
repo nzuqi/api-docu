@@ -15,11 +15,25 @@
             </button>
         </mat-form-field>
 
-        <button mat-icon-button [matMenuTriggerFor]="profileMenu" aria-label="Profile">
-            <mat-icon>person</mat-icon>
-        </button>
+        <div class="profile">
+            <button mat-button [matMenuTriggerFor]="langMenu" aria-label="Profile">
+                <span class="lang"><img src="assets/images/flags/en.png" /> EN <mat-icon>expand_more</mat-icon></span>
+            </button>
+            <button mat-icon-button [matMenuTriggerFor]="profileMenu" aria-label="Profile">
+                <mat-icon>person</mat-icon>
+            </button>
+        </div>
     </div>
 </div>
+
+<mat-menu #langMenu="matMenu" xPosition="before" dense class="profile-menu">
+    <button mat-menu-item>
+        <span class="lang"><img src="assets/images/flags/en.png" /> English, EN</span>
+    </button>
+    <button mat-menu-item>
+        <span class="lang"><img src="assets/images/flags/fr.png" /> French, FR</span>
+    </button>
+</mat-menu>
 
 <mat-menu #profileMenu="matMenu" xPosition="before" dense class="profile-menu">
     <button mat-menu-item>

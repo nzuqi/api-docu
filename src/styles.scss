@@ -75,3 +75,20 @@ body {
     min-height: 36px !important;
   }
 }
+
+span.lang {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  img {
+    width: 21px;
+    margin-right: 12px;
+  }
+  mat-icon {
+    margin-left: 6px;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}
