@@ -11,6 +11,7 @@ export class SigninComponent {
     email: new FormControl<string | null>('', { nonNullable: true, validators: [Validators.required, Validators.email] }),
     password: new FormControl<string | null>('', { nonNullable: true, validators: [Validators.required] }),
   });
+  processing: boolean = false;
 
   get emailErrorMessage(): string {
     if (this.controlHasError('email', 'required')) return 'Your email is required';
@@ -27,6 +28,16 @@ export class SigninComponent {
 
   signin(): void {
     this.signInForm.markAllAsTouched();
+
+    this.signInForm.controls['email'].disable();
+    this.signInForm.controls['password'].disable();
+    this.processing = true;
+
+    setTimeout(() => {
+      this.signInForm.controls['email'].enable();
+      this.signInForm.controls['password'].enable();
+      this.processing = false;
+    }, 2000);
     console.log(this.signInForm.value);
   }
 }
