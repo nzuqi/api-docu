@@ -1,18 +1,19 @@
 <h4>Sign in</h4>
 <p>Use your email & password to continue</p>
 
-<form action="">
+<form [formGroup]="signInForm" (ngSubmit)="signin()">
     <mat-form-field appearance="outline">
         <mat-label>Your email</mat-label>
-        <input matInput placeholder="pat@example.com" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        <input matInput placeholder="pat@example.com" formControlName="email" required>
+        <mat-error *ngIf="controlHasError('email', 'required') || controlHasError('email', 'email')">{{
+            emailErrorMessage }}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Your password</mat-label>
-        <input matInput placeholder="" [formControl]="password" required>
-        <mat-error *ngIf="password.invalid">Password is invalid</mat-error>
+        <input matInput placeholder="" formControlName="password" required>
+        <mat-error *ngIf="controlHasError('password', 'required')">Your password is invalid</mat-error>
     </mat-form-field>
     <span>Forgot password? <a href="/">Reset</a></span>
-    <button mat-raised-button color="primary">Sign in</button>
-    <button mat-button color="primary">New user? <strong>Sign up</strong></button>
+    <button mat-raised-button color="primary" type="submit">Sign in</button>
+    <button mat-button color="primary" role="button">New user? <strong>Sign up</strong></button>
 </form>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signin',
@@ -7,14 +7,26 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent {
-  email = new FormControl('', [Validators.required, Validators.email,]);
-  password = new FormControl('', [Validators.required]);
+  signInForm: FormGroup = new FormGroup({
+    email: new FormControl<string | null>('', { nonNullable: true, validators: [Validators.required, Validators.email] }),
+    password: new FormControl<string | null>('', { nonNullable: true, validators: [Validators.required] }),
+  });
 
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
+  get emailErrorMessage(): string {
+    if (this.controlHasError('email', 'required')) return 'Your email is required';
+    return 'Your email is invalid';
+  }
 
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+  controlHasError(controlName: string, validationType: string): boolean {
+    const control = this.signInForm.controls[controlName];
+    if (!control) return false;
+
+    const result = control.hasError(validationType) && (control.dirty || control.touched);
+    return result;
+  }
+
+  signin(): void {
+    this.signInForm.markAllAsTouched();
+    console.log(this.signInForm.value);
   }
 }
