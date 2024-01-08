@@ -12,5 +12,7 @@
         <input matInput placeholder="" [formControl]="password" required>
         <mat-error *ngIf="password.invalid">Password is invalid</mat-error>
     </mat-form-field>
+    <span>Forgot password? <a href="/">Reset</a></span>
     <button mat-raised-button color="primary">Sign in</button>
+    <button mat-button color="primary">New user? <strong>Sign up</strong></button>
 </form>
