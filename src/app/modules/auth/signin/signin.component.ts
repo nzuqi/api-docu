@@ -44,7 +44,7 @@ export class SigninComponent implements OnDestroy {
 
     this.setProcessing(true);
 
-    const _done = () => setTimeout(() => { this.setProcessing(false); that.openSnackBar("Oop! Check your credentials & try again."); }, 2000);
+    const _done = () => setTimeout(() => { this.setProcessing(false); that.alertService.openSnackBar("Oop! Check your credentials & try again."); }, 2000);
 
     const that = this;
     const email = this.signInForm.controls['email'].value;
@@ -53,8 +53,10 @@ export class SigninComponent implements OnDestroy {
     this.authService.signin(email, password).pipe(takeUntil(this.destroyed$)).subscribe({
       next(response) {
         if (response) {
-          that.router.navigateByUrl('/');
-          that.openSnackBar("You've signed in successfully.");
+          setTimeout(() => {
+            that.router.navigateByUrl('/');
+            that.alertService.openSnackBar("You've signed in successfully.");
+          }, 2000);
         } else {
           _done();
         }
@@ -70,9 +72,5 @@ export class SigninComponent implements OnDestroy {
     status ? controls['email'].disable() : controls['email'].enable();
     status ? controls['password'].disable() : controls['password'].enable();
     this.processing = status;
-  }
-
-  openSnackBar(message: string) {
-    this.alertService.snackBar.open(message, '', { duration: 10000, verticalPosition: 'top' });
   }
 }

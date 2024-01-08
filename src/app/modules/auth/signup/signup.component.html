@@ -9,13 +9,13 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Your email</mat-label>
-        <input matInput placeholder="" formControlName="email" required>
+        <input matInput placeholder="" formControlName="email" type="email" required>
         <mat-error *ngIf="controlHasError('email', 'required') || controlHasError('email', 'email')">{{
             emailErrorMessage }}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Your password</mat-label>
-        <input matInput placeholder="" formControlName="password" required>
+        <input matInput placeholder="" formControlName="password" type="password" required>
         <mat-error *ngIf="controlHasError('password', 'required')">Your password is invalid</mat-error>
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit" [disabled]="processing">{{ processing ? 'Processing...' :
