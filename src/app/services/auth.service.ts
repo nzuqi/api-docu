@@ -36,7 +36,7 @@ export class AuthService {
     if (usr) {
       const user = JSON.parse(usr);
       if (user?.email == email && atob(user?.password || '') == password) {
-        user.token = this.randomStr(20);
+        user.token = 'JhfDZsw2wE0IUu4WdHONLiF2HU96bWdq'; // Some random string
         this.storageService.saveData('api-docu-user', JSON.stringify(user));
         response = true;
       } else response = false;
@@ -52,16 +52,5 @@ export class AuthService {
       this.storageService.saveData('api-docu-user', JSON.stringify(user));
     }
     return true;
-  }
-
-  private randomStr(length: number): string {
-    let result = '';
-    const characters = '$%^&*ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let counter = 0;
-    while (counter < length) {
-      result += characters.charAt(Math.floor(Math.random() * characters.length));
-      counter += 1;
-    }
-    return result;
   }
 }
