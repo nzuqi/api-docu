@@ -2,12 +2,12 @@
 <p>Use your email & password to continue</p>
 
 <form action="">
-    <mat-form-field>
+    <mat-form-field appearance="outline">
         <mat-label>Your email</mat-label>
         <input matInput placeholder="pat@example.com" [formControl]="email" required>
         <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field appearance="outline">
         <mat-label>Your password</mat-label>
         <input matInput placeholder="" [formControl]="password" required>
         <mat-error *ngIf="password.invalid">Password is invalid</mat-error>
