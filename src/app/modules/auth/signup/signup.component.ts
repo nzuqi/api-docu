@@ -1,8 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class SignupComponent implements OnDestroy {
   processing: boolean = false;
   destroyed$ = new Subject();
 
-  constructor(private authService: AuthService, private router: Router, public snackBar: MatSnackBar) { }
+  constructor(private authService: AuthService, private router: Router, private alertService: AlertService) { }
 
   ngOnDestroy(): void {
     this.destroyed$.next(true);
@@ -70,6 +70,6 @@ export class SignupComponent implements OnDestroy {
   }
 
   openSnackBar(message: string) {
-    this.snackBar.open(message, '', { duration: 10000, verticalPosition: 'top' });
+    this.alertService.snackBar.open(message, '', { duration: 10000, verticalPosition: 'top' });
   }
 }

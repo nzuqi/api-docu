@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-signin',
@@ -18,7 +18,7 @@ export class SigninComponent implements OnDestroy {
   processing: boolean = false;
   destroyed$ = new Subject();
 
-  constructor(private authService: AuthService, private router: Router, public snackBar: MatSnackBar) { }
+  constructor(private authService: AuthService, private router: Router, private alertService: AlertService) { }
 
   ngOnDestroy(): void {
     this.destroyed$.next(true);
@@ -73,6 +73,6 @@ export class SigninComponent implements OnDestroy {
   }
 
   openSnackBar(message: string) {
-    this.snackBar.open(message, '', { duration: 10000, verticalPosition: 'top' });
+    this.alertService.snackBar.open(message, '', { duration: 10000, verticalPosition: 'top' });
   }
 }
