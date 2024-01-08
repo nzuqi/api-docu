@@ -1,17 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss']
 })
-export class SigninComponent {
+export class SigninComponent implements OnDestroy {
   signInForm: FormGroup = new FormGroup({
     email: new FormControl<string | null>('', { nonNullable: true, validators: [Validators.required, Validators.email] }),
     password: new FormControl<string | null>('', { nonNullable: true, validators: [Validators.required] }),
   });
   processing: boolean = false;
+  destroyed$ = new Subject();
+
+  constructor(private authService: AuthService, private router: Router) { }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
+  }
 
   get emailErrorMessage(): string {
     if (this.controlHasError('email', 'required')) return 'Your email is required';
@@ -28,16 +39,26 @@ export class SigninComponent {
 
   signin(): void {
     this.signInForm.markAllAsTouched();
+    if (this.signInForm.invalid) return;
 
-    this.signInForm.controls['email'].disable();
-    this.signInForm.controls['password'].disable();
-    this.processing = true;
+    this.setProcessing(true);
 
-    setTimeout(() => {
-      this.signInForm.controls['email'].enable();
-      this.signInForm.controls['password'].enable();
-      this.processing = false;
-    }, 2000);
-    console.log(this.signInForm.value);
+    const _done = () => setTimeout(() => this.setProcessing(false), 2000);
+
+    const that = this;
+    const email = this.signInForm.controls['email'].value;
+    const password = this.signInForm.controls['password'].value;
+
+    this.authService.signin(email, password).pipe(takeUntil(this.destroyed$)).subscribe({
+      next(response) { _done(); if (response) { that.router.navigateByUrl('/'); } },
+      error(err) { _done(); }
+    });
+  }
+
+  private setProcessing(status: boolean): void {
+    const controls = this.signInForm.controls;
+    status ? controls['email'].disable() : controls['email'].enable();
+    status ? controls['password'].disable() : controls['password'].enable();
+    this.processing = status;
   }
 }
