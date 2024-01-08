@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
@@ -18,7 +19,7 @@ export class SignupComponent implements OnDestroy {
   processing: boolean = false;
   destroyed$ = new Subject();
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, public snackBar: MatSnackBar) { }
 
   ngOnDestroy(): void {
     this.destroyed$.next(true);
@@ -50,12 +51,12 @@ export class SignupComponent implements OnDestroy {
       password: this.signUpForm.controls['password'].value,
     }
 
-    const _done = () => setTimeout(() => this.setProcessing(false), 2000);
+    const _done = () => setTimeout(() => { this.setProcessing(false); that.openSnackBar("Oop! Check your credentials & try again."); }, 2000);
 
     const that = this;
 
     this.authService.signup(user).pipe(takeUntil(this.destroyed$)).subscribe({
-      next(response) { _done(); if (response) { that.router.navigateByUrl('/auth/signin'); } },
+      next(response) { if (response) { that.router.navigateByUrl('/auth/signin'); } else { _done(); } },
       error(err) { _done(); }
     });
   }
@@ -66,5 +67,9 @@ export class SignupComponent implements OnDestroy {
     status ? controls['email'].disable() : controls['email'].enable();
     status ? controls['password'].disable() : controls['password'].enable();
     this.processing = status;
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '', { duration: 10000, verticalPosition: 'top' });
   }
 }

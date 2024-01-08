@@ -10,7 +10,7 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Your password</mat-label>
-        <input matInput placeholder="" formControlName="password" required>
+        <input matInput placeholder="" formControlName="password" type="password" required>
         <mat-error *ngIf="controlHasError('password', 'required')">Your password is invalid</mat-error>
     </mat-form-field>
     <span>Forgot password? <a [routerLink]="['/auth/reset']" routerLinkActive="router-link-active">Reset</a></span>

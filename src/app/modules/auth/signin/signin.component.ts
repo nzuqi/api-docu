@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-signin',
@@ -17,7 +18,7 @@ export class SigninComponent implements OnDestroy {
   processing: boolean = false;
   destroyed$ = new Subject();
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, public snackBar: MatSnackBar) { }
 
   ngOnDestroy(): void {
     this.destroyed$.next(true);
@@ -43,15 +44,24 @@ export class SigninComponent implements OnDestroy {
 
     this.setProcessing(true);
 
-    const _done = () => setTimeout(() => this.setProcessing(false), 2000);
+    const _done = () => setTimeout(() => { this.setProcessing(false); that.openSnackBar("Oop! Check your credentials & try again."); }, 2000);
 
     const that = this;
     const email = this.signInForm.controls['email'].value;
     const password = this.signInForm.controls['password'].value;
 
     this.authService.signin(email, password).pipe(takeUntil(this.destroyed$)).subscribe({
-      next(response) { _done(); if (response) { that.router.navigateByUrl('/'); } },
-      error(err) { _done(); }
+      next(response) {
+        if (response) {
+          that.router.navigateByUrl('/');
+          that.openSnackBar("You've signed in successfully.");
+        } else {
+          _done();
+        }
+      },
+      error(err) {
+        _done();
+      }
     });
   }
 
@@ -60,5 +70,9 @@ export class SigninComponent implements OnDestroy {
     status ? controls['email'].disable() : controls['email'].enable();
     status ? controls['password'].disable() : controls['password'].enable();
     this.processing = status;
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '', { duration: 10000, verticalPosition: 'top' });
   }
 }
