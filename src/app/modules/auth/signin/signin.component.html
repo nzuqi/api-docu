@@ -4,7 +4,7 @@
 <form [formGroup]="signInForm" (ngSubmit)="signin()">
     <mat-form-field appearance="outline">
         <mat-label>Your email</mat-label>
-        <input matInput placeholder="pat@example.com" formControlName="email" required>
+        <input matInput placeholder="" formControlName="email" required>
         <mat-error *ngIf="controlHasError('email', 'required') || controlHasError('email', 'email')">{{
             emailErrorMessage }}</mat-error>
     </mat-form-field>

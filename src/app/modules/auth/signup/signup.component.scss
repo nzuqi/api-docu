@@ -1,0 +1,43 @@
+:host {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    h4 {
+        margin: 0;
+        font-weight: 300;
+        font-size: 24px;
+    }
+
+    p {
+        margin: 10px;
+        font-size: 14px;
+    }
+
+    form {
+        width: 100%;
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 15px;
+
+        mat-form-field {
+            width: 100%;
+        }
+        button {
+            width: 100%;
+            height: 56px;
+            font-size: 16px;
+        }
+
+        span {
+            margin-top: -12px;
+            text-align: right;
+            width: 100%;
+        }
+    }
+}
