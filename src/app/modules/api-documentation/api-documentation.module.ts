@@ -12,6 +12,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { DocumentationComponent } from './documentation/documentation.component';
 import { ApiDocumentationRoutingModule } from './api-documentation-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -32,6 +33,7 @@ import { ApiDocumentationRoutingModule } from './api-documentation-routing.modul
     MatButtonModule,
     MatMenuModule,
     MatDividerModule,
+    HttpClientModule
   ]
 })
 export class ApiDocumentationModule { }

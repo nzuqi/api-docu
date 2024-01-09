@@ -1,5 +1,6 @@
 import { Component, HostBinding, HostListener } from '@angular/core';
 import { SidenavService } from 'src/app/services/sidenav.service';
+import { en, fr } from './menu';
 
 @Component({
   selector: 'app-sidenav',
@@ -15,8 +16,12 @@ export class SidenavComponent {
     // the width of the sidenav when the user started resizing
     startingWidth: 0,
   };
+  defaultLang = 'en';
+  menu: any[];
 
-  constructor(public sidenavService: SidenavService) { }
+  constructor(public sidenavService: SidenavService) {
+    this.menu = this.defaultLang === 'en' ? en : fr;
+  }
 
   @HostBinding('class.resizing')
   get isResizing(): boolean {

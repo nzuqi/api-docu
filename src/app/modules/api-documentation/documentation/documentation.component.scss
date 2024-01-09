@@ -1,0 +1,11 @@
+:host {
+    padding: 10px 30px;
+    display: block;
+    color: #333;
+
+    .err {
+        max-width: 720px;
+        margin: 40px auto;
+        text-align: center;
+    }
+}

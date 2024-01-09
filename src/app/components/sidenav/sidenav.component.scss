@@ -84,7 +84,7 @@
         text-wrap: nowrap;
         text-overflow: ellipsis;
         &.active {
-          font-weight: 900;
+          // font-weight: 900;
           color: #00a2ff;
           position: relative;
           &::before {

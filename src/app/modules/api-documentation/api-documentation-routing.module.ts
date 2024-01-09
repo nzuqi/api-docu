@@ -9,6 +9,8 @@ const routes: Routes = [
     component: ApiDocumentationComponent,
     children: [
       { path: '', component: DocumentationComponent, },
+      { path: ':section/:slug', component: DocumentationComponent, },
+      { path: '**', redirectTo: '', },
     ],
   },
 ];
