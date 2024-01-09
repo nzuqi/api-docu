@@ -2,8 +2,18 @@
     display: block;
     z-index: 10;
     // position: sticky;
-    // background-color: #fff;
     // top: 0;
+
+    // &::before {
+    //     content: "";
+    //     position: absolute;
+    //     top: 0;
+    //     bottom: 0;
+    //     right: 0;
+    //     left: 0;
+    //     background-color: #ffffffac;
+    //     backdrop-filter: saturate(180%) blur(10px);
+    // }
 
     .toolbar {
         width: 100%;
