@@ -2,7 +2,7 @@ import { Component, HostBinding, HostListener } from '@angular/core';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { en, fr } from './menu';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -28,7 +28,10 @@ export class SidenavComponent {
   defaultLang = 'en';
   menu: any[];
 
-  constructor(public sidenavService: SidenavService) {
+  constructor(
+    public sidenavService: SidenavService,
+    private router: Router,
+  ) {
     this.menu = this.defaultLang === 'en' ? en : fr;
   }
 
@@ -70,5 +73,9 @@ export class SidenavComponent {
   @HostListener('window:mouseup')
   stopResizing() {
     this.resizingEvent.isResizing = false;
+  }
+
+  navigate(slug: string): void {
+    this.router.navigateByUrl(slug);
   }
 }

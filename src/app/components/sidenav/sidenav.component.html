@@ -14,7 +14,7 @@
         <ul class="sidenav-body--menu" *ngFor="let item of menu">
             <li class="sidenav-body--menu--title">{{ item.title }}</li>
             <ng-container *ngFor="let child of item.items">
-                <li class="sidenav-body--menu--item" [routerLink]="[item.slug +'/' + child.slug]"
+                <li class="sidenav-body--menu--item" (click)="navigate('/documentation/' + item.slug +'/' + child.slug)"
                     routerLinkActive="active">
                     {{ child.title }}
                 </li>
