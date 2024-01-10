@@ -34,14 +34,14 @@
 </mat-menu>
 
 <mat-menu #profileMenu="matMenu" xPosition="before" dense class="profile-menu">
-    <button mat-menu-item>
+    <button mat-menu-item routerLink="/profile/account">
         <span>Account</span>
     </button>
     <mat-divider></mat-divider>
-    <button mat-menu-item>
+    <button mat-menu-item routerLink="/api/keys">
         <span>API keys management</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item routerLink="/api/usage">
         <span>API usage</span>
     </button>
     <mat-divider></mat-divider>

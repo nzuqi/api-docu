@@ -93,6 +93,12 @@ span.lang {
   }
 }
 
+.content {
+  flex-grow: 1;
+  padding-right: 20px;
+  background: #fff url("/assets/images/content-pattern.svg") top right no-repeat;
+}
+
 // .mat-mdc-snack-bar-container {
 //   &.custom-snackbar {
 //     --mdc-snackbar-container-color: #2196f3;

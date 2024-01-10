@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent {
+  crumbs: any[] = [];
 
+  constructor() {
+    this.crumbs = [
+      { title: 'Home', path: '/' },
+      { title: 'Profile', path: '/profile' },
+      { title: 'Account', path: '/profile/account' },
+    ];
+  }
 }

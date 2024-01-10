@@ -1,11 +1,20 @@
 import { Component, HostBinding, HostListener } from '@angular/core';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { en, fr } from './menu';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatIconModule,
+  ],
 })
 export class SidenavComponent {
   resizingEvent = {
