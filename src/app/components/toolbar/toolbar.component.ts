@@ -31,7 +31,12 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 export class ToolbarComponent {
   showMenu: boolean = false;
 
-  constructor(public sidenavService: SidenavService, private authService: AuthService, private router: Router, private alertService: AlertService) { }
+  constructor(
+    public sidenavService: SidenavService,
+    private authService: AuthService,
+    private router: Router,
+    private alertService: AlertService,
+  ) { }
 
   toggleMenu(): void {
     this.showMenu = !this.showMenu;
