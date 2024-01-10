@@ -1,6 +1,6 @@
 :host {
     display: block;
-    padding: 10px 30px;
+    padding: 4px 0 10px 0;
     // background-color: aliceblue;
     display: flex;
     flex-direction: row;
@@ -9,6 +9,7 @@
 
     p {
         margin: 0;
+        font-size: 14px;
 
         span {
             margin-right: 40px;

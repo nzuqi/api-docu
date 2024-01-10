@@ -1,3 +1,4 @@
 <p>
-    <span *ngFor="let crumb of crumbs">{{ crumb.title }}</span>
+    <span *ngFor="let crumb of crumbs; let i = index;" (click)="((i + 1) == crumbs.length) ? null : navigate(crumb)">{{
+        crumb.title }}</span>
 </p>

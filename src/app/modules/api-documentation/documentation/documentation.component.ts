@@ -16,6 +16,7 @@ export class DocumentationComponent implements OnDestroy {
   exists: boolean = false;
   processing: boolean = false;
   content: any;
+  crumbs: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +35,12 @@ export class DocumentationComponent implements OnDestroy {
         next: (params) => {
 
           if (!params['section'] || !params['slug']) this.router.navigateByUrl('/');
+
+          this.crumbs = [
+            { title: 'Home', path: '/' },
+            { title: 'API Documentation', path: '/documentation' },
+            { title: '', path: `/documentation/${params['section']}/${params['slug']}` },
+          ];
 
           const path = `/assets/documentation/${params['section']}/${params['slug']}.md`;
           this.parseFile(path);
@@ -57,8 +64,15 @@ export class DocumentationComponent implements OnDestroy {
       .subscribe({
         next: (response) => {
           this.exists = true;
+
+          // Set title based on first line of file
+          let title: any = response.split('\n');
+          title = title?.length ? title[0] : '';
+          title = parseMarkdown(title).replace(/<[^>]*>?/gm, '');
+          this.crumbs[this.crumbs.length - 1].title = title;
+
           this.content = parseMarkdown(response);
-          // Sanitize
+          // Sanitize content
           this.content = this.sanitizer.bypassSecurityTrustHtml(this.content);
           this.processing = false;
         },

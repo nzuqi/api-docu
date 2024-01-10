@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -6,9 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./breadcrumbs.component.scss']
 })
 export class BreadcrumbsComponent {
-  crumbs: any[] = [
-    { title: 'Home', path: '/' },
-    { title: 'API Documentation', path: '/documentation' },
-    { title: 'Authentication', path: '/documentation/authentication' },
-  ];
+  @Input() crumbs: any[] = [];
+
+  constructor(private router: Router) { }
+
+  navigate(path: string): void {
+    this.router.navigateByUrl(path);
+  }
 }
